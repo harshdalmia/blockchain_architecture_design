@@ -1,0 +1,31 @@
+
+
+  InsuranceClaims
+    Policy creation
+      ✔ records the policy on-chain
+      ✔ only the insurer can create policies
+    Claim submission and automated verification
+      ✔ verifies an eligible claim automatically
+      ✔ only the policy holder can submit
+      ✔ auto-rejects a claim above remaining coverage
+      ✔ auto-rejects a claim after the policy expired
+    Fraud flagging
+      ✔ flags a duplicate document hash
+      ✔ flags a duplicate claim amount on the same policy
+      ✔ flags an unusually large amount
+      ✔ manual review can clear a flagged claim
+      ✔ manual review can reject a flagged claim
+      ✔ a flagged claim cannot be approved before review
+    Multi-party approval and payout
+      ✔ does not pay after only the insurer approves
+      ✔ pays out automatically once insurer and auditor both approve
+      ✔ rejects approvals from anyone else
+      ✔ cannot approve twice by the same party
+      ✔ cannot pay twice
+      ✔ auditor can reject a verified claim
+    Audit trail
+      ✔ emits an ordered event history for a full claim
+
+
+  19 passing (1s)
+

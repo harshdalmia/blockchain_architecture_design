@@ -1,0 +1,14 @@
+import chromium from "@sparticuz/chromium";
+import puppeteer from "puppeteer-core";
+import fs from "node:fs";
+const strip = (s) => s.replace(/\x1b\[[0-9;]*m/g, "");
+const b = await puppeteer.launch({ args: chromium.args, executablePath: await chromium.executablePath(), headless: "shell" });
+const nodeLog = strip(fs.readFileSync("node.log", "utf8")).split("\n").filter((l) => !l.startsWith("eth_") && !l.includes("Private Key") && l.trim()).slice(0, 12).join("\n");
+const text = "$ npx hardhat node\n" + nodeLog + "\n  …(20 funded test accounts; private keys omitted)…\n\n$ npx hardhat run --network localhost scripts/deploy.js\n" + fs.readFileSync("deploy.log", "utf8");
+const p = await b.newPage();
+await p.setViewport({ width: 1100, height: 400, deviceScaleFactor: 1.5 });
+await p.setContent(`<body style="margin:0;background:#0f172a"><div style="background:#1e293b;color:#94a3b8;font:12px system-ui;padding:8px 14px">● ● ●  &nbsp; Terminal — local Ethereum node and contract deployment</div><pre style="margin:0;padding:16px;color:#e2e8f0;font:13px/1.45 ui-monospace,Menlo,monospace;white-space:pre-wrap">${text.replace(/&/g,"&amp;").replace(/</g,"&lt;")}</pre></body>`);
+const h = await p.evaluate(() => document.body.scrollHeight);
+await p.setViewport({ width: 1100, height: h, deviceScaleFactor: 1.5 });
+await p.screenshot({ path: "screenshots/fig1_local_testnet.png" });
+await b.close();

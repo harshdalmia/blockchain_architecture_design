@@ -1,0 +1,4 @@
+FIRE DAMAGE ASSESSMENT REPORT
+Policy: #1   Date of loss: 2026-10-11
+Description: Garage fire, major structural and contents damage.
+Estimate: 9.0 ETH equivalent.

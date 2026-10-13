@@ -1,0 +1,4 @@
+VEHICLE DAMAGE ASSESSMENT REPORT
+Policy: #1   Date of loss: 2026-10-09
+Description: Rear-end collision, bumper and tail-light assembly damaged.
+Repair estimate: 2.0 ETH equivalent. Photos attached (3).
